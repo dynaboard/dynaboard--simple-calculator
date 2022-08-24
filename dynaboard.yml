@@ -1,6 +1,6 @@
 runtimeVersion: 0.2.14
 name: Simple Calculator
-description: 'A basic calculator'
+description: 'A simple calculator app'
 type: com.dynaboard/project
 nodes:
   ROOT_NODE:
@@ -10,27 +10,14 @@ nodes:
     parentNodeID: ROOT_NODE
     parentSlot: ROOT_NODE
     slots:
-      themes:
-        - nodeID: b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5
-          orderKey: a0
       pages:
         - nodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
           orderKey: a0
       resources:
-        - nodeID: 4e0143f6-85f0-45e7-8efd-e704ff3b00fc
-          orderKey: a1
-        - nodeID: 070c76b5-a772-4572-9fe0-46d2d5a3d9ab
-          orderKey: a2
         - nodeID: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
           orderKey: a3
-      templates:
-        - nodeID: 5d4a75ce-9fea-4ef6-a9a3-640e5469c493
-          orderKey: a0
-      functions:
-        - nodeID: 2d6f289e-4275-4ef5-b895-69242e9e5b60
-          orderKey: a0
     properties:
-      selectedTheme: b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5
+      selectedTheme: null
   5513f466-9af1-4f8b-97b1-df1e12fe955c:
     id: 5513f466-9af1-4f8b-97b1-df1e12fe955c
     type: PAGE
@@ -798,14 +785,6 @@ nodes:
           return Screen.value
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '6';
-
-          return Screen.value
   42aed45d-7fbe-47ea-8178-7f8a3629f5de:
     id: 42aed45d-7fbe-47ea-8178-7f8a3629f5de
     type: FUNCTION
@@ -824,14 +803,6 @@ nodes:
           return Screen.value
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '7';
-
-          return Screen.value
   eba87622-4a71-4bc5-a76d-d2781df51c30:
     id: eba87622-4a71-4bc5-a76d-d2781df51c30
     type: FUNCTION
@@ -850,14 +821,6 @@ nodes:
           return Screen.value
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '8';
-
-          return Screen.value
   58051bb0-2d96-46b8-a33a-5f92a197fdc0:
     id: 58051bb0-2d96-46b8-a33a-5f92a197fdc0
     type: FUNCTION
@@ -876,14 +839,6 @@ nodes:
           return Screen.value
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '9';
-
-          return Screen.value
   fd36ae4c-f161-4074-92b1-881fed6e42d4:
     id: fd36ae4c-f161-4074-92b1-881fed6e42d4
     type: FUNCTION
@@ -906,18 +861,6 @@ nodes:
           return screenVal
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = '+';
-          Screen.value = ' ';
-
-          return screenVal
   af0b49b3-ba0e-4c78-aa7c-2ff034742ac3:
     id: af0b49b3-ba0e-4c78-aa7c-2ff034742ac3
     type: FUNCTION
@@ -963,41 +906,6 @@ nodes:
           return result
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          function handleEquals() {
-              const registerVal = +(register1.value ?? '0')
-              const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-              const lastOperand = (register2.value).trim()
-              
-              if (!lastOperand || !lastOperand.length) {
-                  return registerVal;
-              } else if (lastOperand === '+') {
-                  return registerVal + screenVal;
-              } else if (lastOperand === '-') {
-                  return registerVal - screenVal;
-              } else if (lastOperand === 'x') {
-                  return registerVal * screenVal;
-              } else if (lastOperand === '÷') {
-                  if (registerVal !== 0) {
-                      return registerVal/screenVal;
-                  } else {
-                  return 0;
-                  }
-              } else if (lastOperand === '%') {
-                  return registerVal % screenVal;
-              }
-          }
-
-          const result = handleEquals()
-          register1.value = 0;
-          register2.value = ' ';
-          Screen.value = result ?? 0;
-
-          return result
   f77bea61-4afb-4917-9466-439fe1122f6a:
     id: f77bea61-4afb-4917-9466-439fe1122f6a
     type: CONTAINER
@@ -1077,16 +985,6 @@ nodes:
           return screenVal
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-          register1.value = screenVal;
-          register2.value = '-';
-          Screen.value = ' ';
-          return screenVal
   91e30ace-1cb1-4350-9247-f07050296bf5:
     id: 91e30ace-1cb1-4350-9247-f07050296bf5
     type: FUNCTION
@@ -1109,18 +1007,6 @@ nodes:
           return screenVal
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = 'x';
-          Screen.value = ' ';
-
-          return screenVal
   065092ff-8afa-43cb-9b2b-daaac913ac1d:
     id: 065092ff-8afa-43cb-9b2b-daaac913ac1d
     type: FUNCTION
@@ -1143,18 +1029,6 @@ nodes:
           return screenVal
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = '÷';
-          Screen.value = ' ';
-
-          return screenVal
   eda1b99b-13d0-4354-bf1a-6099ca5b1b37:
     id: eda1b99b-13d0-4354-bf1a-6099ca5b1b37
     type: FUNCTION
@@ -1177,18 +1051,6 @@ nodes:
           return screenVal
       onSuccess: ''
       onFailure: ''
-      draftAction:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = '%';
-          Screen.value = ' ';
-
-          return screenVal
   75e90fc6-a3ef-401c-bea0-f89738deffdb:
     id: 75e90fc6-a3ef-401c-bea0-f89738deffdb
     type: CONTAINER
@@ -1251,49 +1113,6 @@ nodes:
     parentSlot: variables
     properties:
       value: ' '
-  b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5:
-    id: b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5
-    type: THEME
-    name: theme1
-    parentNodeID: ROOT_NODE
-    parentSlot: themes
-    properties:
-      theme: |-
-        return {
-            colors: {
-                kevin: {
-                    test: "#f00f00"
-                }
-            }
-        }
-  070c76b5-a772-4572-9fe0-46d2d5a3d9ab:
-    id: 070c76b5-a772-4572-9fe0-46d2d5a3d9ab
-    type: RESOURCE/POSTGRES
-    name: postgres1
-    parentNodeID: ROOT_NODE
-    parentSlot: resources
-    properties: {}
-  5d4a75ce-9fea-4ef6-a9a3-640e5469c493:
-    id: 5d4a75ce-9fea-4ef6-a9a3-640e5469c493
-    type: TEMPLATE
-    name: template1
-    parentNodeID: ROOT_NODE
-    parentSlot: templates
-    slots:
-      canvas:
-        - nodeID: 659b63a7-e912-4dc6-a2b1-19070c202be7
-          orderKey: Zz
-        - nodeID: badb03a6-10df-4c4e-a282-ba94efc8119c
-          orderKey: a0
-    properties:
-      minHeight: 32px
-      height: 132px
-      maxHeight: 960px
-      minWidth: 32px
-      width: 228px
-      maxWidth: 960px
-      layoutStyle: VERTICAL_STACK
-      spacing: 8px
   659b63a7-e912-4dc6-a2b1-19070c202be7:
     id: 659b63a7-e912-4dc6-a2b1-19070c202be7
     type: TEXT
@@ -1312,29 +1131,3 @@ nodes:
       padding: 8px
       backgroundColor: accent.purple.400
       onClick: ''
-  4e0143f6-85f0-45e7-8efd-e704ff3b00fc:
-    id: 4e0143f6-85f0-45e7-8efd-e704ff3b00fc
-    type: RESOURCE/PYTHON_SERVER
-    name: python_server1
-    parentNodeID: ROOT_NODE
-    parentSlot: resources
-    properties: {}
-  2d6f289e-4275-4ef5-b895-69242e9e5b60:
-    id: 2d6f289e-4275-4ef5-b895-69242e9e5b60
-    type: FUNCTION
-    name: function1
-    parentNodeID: ROOT_NODE
-    parentSlot: functions
-    properties:
-      action: ''
-      draftAction:
-        code: |-
-          def run(kv, func):
-             return "Hello, World!"
-        keyspace: default
-        targetNode:
-          ref: 4e0143f6-85f0-45e7-8efd-e704ff3b00fc
-        actionType: CALL_SERVER_FUNCTION
-      debounceMillis: '{{ 0 }}'
-      onSuccess: ''
-      onFailure: ''
