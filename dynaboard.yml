@@ -667,7 +667,6 @@ nodes:
             border-radius: 8px;
             text-align: right;
             padding: 4px 8px;
-            height: 100%;
         }
       value: ' '
       fontSize: 64px
@@ -959,9 +958,8 @@ nodes:
             font-family: monospace;
             border-radius: 8px;
             text-align: right;
-            padding: 4px 8px;
-            height: 100%;
-            vertical-align: middle;
+            padding: 6px ;
+            margin: auto;
         }
       value: '{{register2.value}}'
       overflow: auto
