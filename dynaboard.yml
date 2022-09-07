@@ -1,29 +1,402 @@
 runtimeVersion: 0.2.14
-name: Simple Calculator
-description: 'A simple calculator app'
+name: Calculator
+description: 'A simple calcuator program'
 type: com.dynaboard/project
 nodes:
   ROOT_NODE:
-    id: ROOT_NODE
     type: ROOT_NODE
     name: ROOT_NODE
-    parentNodeID: ROOT_NODE
-    parentSlot: ROOT_NODE
     slots:
+      themes:
+        - nodeID: b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5
+          orderKey: a0
       pages:
         - nodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
           orderKey: a0
       resources:
+        - nodeID: 4e0143f6-85f0-45e7-8efd-e704ff3b00fc
+          orderKey: a1
+        - nodeID: 070c76b5-a772-4572-9fe0-46d2d5a3d9ab
+          orderKey: a2
         - nodeID: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
           orderKey: a3
+      templates:
+        - nodeID: 5d4a75ce-9fea-4ef6-a9a3-640e5469c493
+          orderKey: a0
+      functions:
+        - nodeID: 2d6f289e-4275-4ef5-b895-69242e9e5b60
+          orderKey: a0
     properties:
-      selectedTheme: null
+      selectedTheme: b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5
+  01ef9382-9814-4cea-99eb-b67a1d420723:
+    type: CONTAINER
+    name: app
+    slots:
+      canvas:
+        - nodeID: 374e8df4-2a48-46fd-acaf-d81a29aadcd1
+          orderKey: a0
+    properties:
+      top: '18'
+      heightMode: FIXED
+      height: '34'
+      widthMode: FILL
+      width: '12'
+      boxShadow: '0'
+      layoutStyle: HORIZONTAL_STACK
+      distributeContent: center
+      alignContent: center
+      spacing: '0'
+      backgroundColor: transparent
+  025b6bb8-2ba4-4cac-a4c0-735c4781e8d2:
+    type: BUTTON
+    name: seven
+    properties:
+      top: '8'
+      left: '32'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '7'
+      onClick:
+        function:
+          ref: 42aed45d-7fbe-47ea-8178-7f8a3629f5de
+      backgroundColor: accent.purple.400
+      padding: 8px
+  065092ff-8afa-43cb-9b2b-daaac913ac1d:
+    type: FUNCTION
+    name: divide
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
+
+          register1.value = screenVal;
+          register2.value = '÷';
+          Screen.value = ' ';
+
+          return screenVal
+      onSuccess: ''
+      onFailure: ''
+  070c76b5-a772-4572-9fe0-46d2d5a3d9ab:
+    type: RESOURCE/POSTGRES
+    name: postgres1
+  0f3d50f9-bc38-4849-95cb-88a71d700fc9:
+    type: CONTAINER
+    name: row2
+    slots:
+      canvas:
+        - nodeID: 5abcea7f-8b70-492e-ba62-3d3978870451
+          orderKey: Zw
+        - nodeID: 4f6d1b9a-3661-41f0-b91d-d011e3fc2753
+          orderKey: Zx
+        - nodeID: 2bad68b6-d2ac-4681-83aa-264b75728e8e
+          orderKey: Zy
+        - nodeID: a81d8c41-a5c0-4e07-bc47-456f4a3689c9
+          orderKey: Zz
+        - nodeID: 12fe8e7d-5882-42e5-bb0c-5d4120b82145
+          orderKey: a0
+    properties:
+      top: '240'
+      left: '96'
+      heightMode: FIXED
+      height: 72px
+      widthMode: FILL
+      width: fill
+      boxShadow: '0'
+      layoutStyle: HORIZONTAL_STACK
+      distributeContent: ''
+      padding: '4'
+      spacing: 8px
+      backgroundColor: transparent
+  10233c3c-15f1-4d63-940e-c39b48439dee:
+    type: BUTTON
+    name: clear
+    properties:
+      top: '40'
+      left: '400'
+      heightMode: FIXED
+      height: fill
+      widthMode: FILL
+      width: 96px
+      text: Clear
+      onClick:
+        function:
+          ref: b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc
+      backgroundColor: accent.purple.400
+      padding: 8px
+  127e07a8-d794-4fd1-a848-a33203c3eb66:
+    type: BUTTON
+    name: one
+    properties:
+      top: '32'
+      left: '32'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '1'
+      onClick:
+        function:
+          ref: 7107ca8e-5555-44b7-adc2-478c6fd7e15d
+      backgroundColor: accent.purple.400
+      padding: 8px
+  12fe8e7d-5882-42e5-bb0c-5d4120b82145:
+    type: BUTTON
+    name: modbutton
+    properties:
+      heightMode: FIXED
+      height: fill
+      widthMode: FILL
+      width: 96px
+      text: modulo
+      onClick:
+        function:
+          ref: eda1b99b-13d0-4354-bf1a-6099ca5b1b37
+      backgroundColor: accent.purple.400
+      padding: 8px
+  20a77996-e255-4996-861e-ef4922070bd3:
+    type: TEXT
+    name: text1
+    properties:
+      top: '32'
+      left: '16'
+      heightMode: FILL
+      height: fill
+      widthMode: FIXED
+      width: 50px
+      styles: |-
+        element.styles {
+            font-size: 64px;
+            background: transparent;
+            color: #000;
+            font-weight: 700;
+            font-family: monospace;
+            border-radius: 8px;
+            text-align: right;
+            padding: 4px 8px;
+        }
+      value: '{{register2.value}}'
+      verticalAlign: center
+      overflow: auto
+  226769f0-5241-4754-9de9-099c0cde3ecd:
+    type: FUNCTION
+    name: type5
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '5';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  2bad68b6-d2ac-4681-83aa-264b75728e8e:
+    type: BUTTON
+    name: six
+    properties:
+      top: '32'
+      left: '336'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '6'
+      onClick:
+        function:
+          ref: 74258f4c-b7bd-4575-b726-4ac39f76cb07
+      backgroundColor: accent.purple.400
+      padding: 8px
+  2d6f289e-4275-4ef5-b895-69242e9e5b60:
+    type: FUNCTION
+    name: function1
+    properties:
+      action: ''
+      debounceMillis: '{{ 0 }}'
+      onSuccess: ''
+      onFailure: ''
+  348f891d-cd13-43cb-a854-265481ff9443:
+    type: BUTTON
+    name: times
+    properties:
+      top: '32'
+      left: '288'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: x
+      onClick:
+        function:
+          ref: 91e30ace-1cb1-4350-9247-f07050296bf5
+      backgroundColor: accent.purple.400
+      padding: 8px
+  374e8df4-2a48-46fd-acaf-d81a29aadcd1:
+    type: CONTAINER
+    name: calculatorBody
+    slots:
+      canvas:
+        - nodeID: f77bea61-4afb-4917-9466-439fe1122f6a
+          orderKey: Zz
+        - nodeID: 812931ba-c14f-465e-9860-13aa948ff82e
+          orderKey: ZzG
+    properties:
+      top: NaN
+      left: NaN
+      heightMode: FIXED
+      height: 448px
+      widthMode: FIXED
+      width: 448px
+      styles: |-
+        element.styles {
+            border-radius: 16px;
+            border: 3px solid #000;
+        }
+      boxShadow: lg
+      layoutStyle: VERTICAL_STACK
+      distributeContent: ''
+      backgroundColor: surface.200
+  38076ba6-1008-4ff4-b793-7fc09594f570:
+    type: TEXT
+    name: Screen
+    properties:
+      top: '0'
+      left: '80'
+      heightMode: FILL
+      height: fill
+      widthMode: FILL
+      width: 352px
+      styles: |-
+        element.styles {
+            font-size: 64px;
+            line-height: 64px;
+            background: transparent;
+            color: #000;
+            font-weight: 700;
+            font-family: monospace;
+            border-radius: 8px;
+            text-align: right;
+            padding: 4px 8px;
+        }
+      value: ' '
+      fontSize: sm
+      textAlign: right
+      verticalAlign: center
+      fontWeight: '700'
+      overflowX: hidden
+      overflowY: hidden
+      overflow: auto
+      textOverflow: clip
+  42aed45d-7fbe-47ea-8178-7f8a3629f5de:
+    type: FUNCTION
+    name: type7
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '7';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  42e3a26c-dd32-4636-91c1-e456f5c6d881:
+    type: FUNCTION
+    name: type0
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '0';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  4ae87ece-de5a-4d34-8c2e-eb6c11772080:
+    type: BUTTON
+    name: dividebutton
+    properties:
+      top: '32'
+      left: '288'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      styles: |-
+        element.styles {
+            font-size: 18px;
+        }
+      text: ÷
+      onClick:
+        function:
+          ref: 065092ff-8afa-43cb-9b2b-daaac913ac1d
+      backgroundColor: accent.purple.400
+      padding: 8px
+  4b673347-e5f0-42b9-9e35-ed5f0a305fde:
+    type: BUTTON
+    name: three
+    properties:
+      top: '32'
+      left: '320'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '3'
+      onClick:
+        function:
+          ref: 99af1ce0-1477-40f6-87ac-90b33432ee5c
+      backgroundColor: accent.purple.400
+      padding: 8px
+  4e0143f6-85f0-45e7-8efd-e704ff3b00fc:
+    type: RESOURCE/PYTHON_SERVER
+    name: python_server1
+  4f6d1b9a-3661-41f0-b91d-d011e3fc2753:
+    type: BUTTON
+    name: five
+    properties:
+      top: '32'
+      left: '176'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '5'
+      onClick:
+        function:
+          ref: 226769f0-5241-4754-9de9-099c0cde3ecd
+      backgroundColor: accent.purple.400
+      padding: 8px
+  5430b404-f44a-4a1f-aa3a-49b369edcc79:
+    type: FUNCTION
+    name: type4
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '4';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
   5513f466-9af1-4f8b-97b1-df1e12fe955c:
-    id: 5513f466-9af1-4f8b-97b1-df1e12fe955c
     type: PAGE
     name: index
-    parentNodeID: ROOT_NODE
-    parentSlot: pages
     slots:
       functions:
         - nodeID: af0b49b3-ba0e-4c78-aa7c-2ff034742ac3
@@ -77,62 +450,123 @@ nodes:
       spacing: '4'
       columnSize: 79.328125
       rowSize: 16
-  01ef9382-9814-4cea-99eb-b67a1d420723:
-    id: 01ef9382-9814-4cea-99eb-b67a1d420723
-    type: CONTAINER
-    name: app
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: canvas
+  58051bb0-2d96-46b8-a33a-5f92a197fdc0:
+    type: FUNCTION
+    name: type9
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '9';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  5abcea7f-8b70-492e-ba62-3d3978870451:
+    type: BUTTON
+    name: four
+    properties:
+      top: '16'
+      left: '32'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '4'
+      onClick:
+        function:
+          ref: 5430b404-f44a-4a1f-aa3a-49b369edcc79
+      backgroundColor: accent.purple.400
+      padding: 8px
+  5d4a75ce-9fea-4ef6-a9a3-640e5469c493:
+    type: TEMPLATE
+    name: template1
     slots:
       canvas:
-        - nodeID: 374e8df4-2a48-46fd-acaf-d81a29aadcd1
+        - nodeID: 659b63a7-e912-4dc6-a2b1-19070c202be7
+          orderKey: Zz
+        - nodeID: badb03a6-10df-4c4e-a282-ba94efc8119c
           orderKey: a0
     properties:
-      top: '18'
+      minHeight: 32px
+      height: 132px
+      maxHeight: 960px
+      minWidth: 32px
+      width: 228px
+      maxWidth: 960px
+      layoutStyle: VERTICAL_STACK
+      spacing: 8px
+  5ffa49b8-fbe7-482a-a06e-8359a373f9de:
+    type: BUTTON
+    name: equalsbutton
+    properties:
       heightMode: FIXED
-      height: '34'
+      height: fill
       widthMode: FILL
-      width: '12'
-      boxShadow: '0'
-      layoutStyle: HORIZONTAL_STACK
-      distributeContent: center
-      alignContent: center
-      spacing: '0'
-      backgroundColor: transparent
-  374e8df4-2a48-46fd-acaf-d81a29aadcd1:
-    id: 374e8df4-2a48-46fd-acaf-d81a29aadcd1
+      width: 96px
+      text: '='
+      onClick:
+        function:
+          ref: af0b49b3-ba0e-4c78-aa7c-2ff034742ac3
+      backgroundColor: accent.purple.400
+      padding: 8px
+  659b63a7-e912-4dc6-a2b1-19070c202be7:
+    type: TEXT
+    name: text1
+    properties:
+      overflow: auto
+  7107ca8e-5555-44b7-adc2-478c6fd7e15d:
+    type: FUNCTION
+    name: type1
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '1';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  74258f4c-b7bd-4575-b726-4ac39f76cb07:
+    type: FUNCTION
+    name: type6
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '6';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  75e90fc6-a3ef-401c-bea0-f89738deffdb:
     type: CONTAINER
-    name: calculatorBody
-    parentNodeID: 01ef9382-9814-4cea-99eb-b67a1d420723
-    parentSlot: canvas
+    name: Readme
     slots:
       canvas:
-        - nodeID: f77bea61-4afb-4917-9466-439fe1122f6a
-          orderKey: Zz
-        - nodeID: 812931ba-c14f-465e-9860-13aa948ff82e
-          orderKey: ZzG
+        - nodeID: b41fc109-374f-42cb-bd2e-30bae23e4a33
+          orderKey: a0
     properties:
-      top: NaN
-      left: NaN
-      heightMode: FIXED
-      height: 448px
-      widthMode: FIXED
-      width: 448px
-      styles: |-
-        element.styles {
-            border-radius: 16px;
-            border: 3px solid #000;
-        }
-      boxShadow: lg
-      layoutStyle: VERTICAL_STACK
-      distributeContent: ''
-      backgroundColor: surface.200
+      top: '3'
+      left: '2'
+      heightMode: AUTO
+      height: '14'
+      widthMode: FILL
+      width: '10'
+      layoutStyle: HORIZONTAL_STACK
+      alignContent: center
   812931ba-c14f-465e-9860-13aa948ff82e:
-    id: 812931ba-c14f-465e-9860-13aa948ff82e
     type: CONTAINER
     name: buttonsContainer
-    parentNodeID: 374e8df4-2a48-46fd-acaf-d81a29aadcd1
-    parentSlot: canvas
     slots:
       canvas:
         - nodeID: d1017f94-3ca8-40d2-9c30-a3cde7eec616
@@ -156,57 +590,18 @@ nodes:
       padding: '0'
       spacing: 4px
       backgroundColor: transparent
-  d1017f94-3ca8-40d2-9c30-a3cde7eec616:
-    id: d1017f94-3ca8-40d2-9c30-a3cde7eec616
+  850e6f07-738f-4f8d-b88e-45f3a8bb79fb:
     type: CONTAINER
-    name: row1
-    parentNodeID: 812931ba-c14f-465e-9860-13aa948ff82e
-    parentSlot: canvas
+    name: row4
     slots:
       canvas:
-        - nodeID: 025b6bb8-2ba4-4cac-a4c0-735c4781e8d2
-          orderKey: Zw
-        - nodeID: a3a8ca58-06e2-4a21-8b90-6458e39081fe
-          orderKey: Zx
-        - nodeID: 98b0e93b-f3e6-417f-bb7d-5b17a2593143
-          orderKey: Zy
-        - nodeID: e5872a95-bc06-4f48-bc5e-47f7106911c6
+        - nodeID: f39e845a-518c-420a-a459-7bebb24019dd
           orderKey: Zz
-        - nodeID: 10233c3c-15f1-4d63-940e-c39b48439dee
+        - nodeID: 348f891d-cd13-43cb-a854-265481ff9443
           orderKey: a0
     properties:
-      top: '80'
-      left: '128'
-      heightMode: FIXED
-      height: 72px
-      widthMode: FILL
-      width: fill
-      boxShadow: '0'
-      layoutStyle: HORIZONTAL_STACK
-      padding: 4px
-      spacing: 8px
-      backgroundColor: transparent
-  0f3d50f9-bc38-4849-95cb-88a71d700fc9:
-    id: 0f3d50f9-bc38-4849-95cb-88a71d700fc9
-    type: CONTAINER
-    name: row2
-    parentNodeID: 812931ba-c14f-465e-9860-13aa948ff82e
-    parentSlot: canvas
-    slots:
-      canvas:
-        - nodeID: 5abcea7f-8b70-492e-ba62-3d3978870451
-          orderKey: Zw
-        - nodeID: 4f6d1b9a-3661-41f0-b91d-d011e3fc2753
-          orderKey: Zx
-        - nodeID: 2bad68b6-d2ac-4681-83aa-264b75728e8e
-          orderKey: Zy
-        - nodeID: a81d8c41-a5c0-4e07-bc47-456f4a3689c9
-          orderKey: Zz
-        - nodeID: 12fe8e7d-5882-42e5-bb0c-5d4120b82145
-          orderKey: a0
-    properties:
-      top: '240'
-      left: '96'
+      top: '336'
+      left: '48'
       heightMode: FIXED
       height: 72px
       widthMode: FILL
@@ -214,15 +609,12 @@ nodes:
       boxShadow: '0'
       layoutStyle: HORIZONTAL_STACK
       distributeContent: ''
-      padding: '4'
+      padding: 4px
       spacing: 8px
       backgroundColor: transparent
   87dd0e5e-cd51-4180-839a-1c231d3002e6:
-    id: 87dd0e5e-cd51-4180-839a-1c231d3002e6
     type: CONTAINER
     name: row3
-    parentNodeID: 812931ba-c14f-465e-9860-13aa948ff82e
-    parentSlot: canvas
     slots:
       canvas:
         - nodeID: 127e07a8-d794-4fd1-a848-a33203c3eb66
@@ -248,31 +640,9 @@ nodes:
       padding: 4px
       spacing: 8px
       backgroundColor: transparent
-  025b6bb8-2ba4-4cac-a4c0-735c4781e8d2:
-    id: 025b6bb8-2ba4-4cac-a4c0-735c4781e8d2
-    type: BUTTON
-    name: seven
-    parentNodeID: d1017f94-3ca8-40d2-9c30-a3cde7eec616
-    parentSlot: canvas
-    properties:
-      top: '8'
-      left: '32'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '7'
-      onClick:
-        function:
-          ref: 42aed45d-7fbe-47ea-8178-7f8a3629f5de
-      backgroundColor: accent.purple.400
-      padding: 8px
-  b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc:
-    id: b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc
+  89fb386a-d6bd-4a2e-b93f-e44c382ce8e1:
     type: FUNCTION
-    name: Clear
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
+    name: type2
     properties:
       value: ''
       action:
@@ -280,37 +650,33 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          Screen.value = ' '
-          register1.value = 0
-          register2.value = ' '
+          Screen.value = (Screen.value ?? '') + '2';
+
           return Screen.value
       onSuccess: ''
       onFailure: ''
-  a3a8ca58-06e2-4a21-8b90-6458e39081fe:
-    id: a3a8ca58-06e2-4a21-8b90-6458e39081fe
-    type: BUTTON
-    name: eight
-    parentNodeID: d1017f94-3ca8-40d2-9c30-a3cde7eec616
-    parentSlot: canvas
+  91e30ace-1cb1-4350-9247-f07050296bf5:
+    type: FUNCTION
+    name: multiply
     properties:
-      top: '8'
-      left: '80'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '8'
-      onClick:
-        function:
-          ref: eba87622-4a71-4bc5-a76d-d2781df51c30
-      backgroundColor: accent.purple.400
-      padding: 8px
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
+
+          register1.value = screenVal;
+          register2.value = 'x';
+          Screen.value = ' ';
+
+          return screenVal
+      onSuccess: ''
+      onFailure: ''
   98b0e93b-f3e6-417f-bb7d-5b17a2593143:
-    id: 98b0e93b-f3e6-417f-bb7d-5b17a2593143
     type: BUTTON
     name: nine
-    parentNodeID: d1017f94-3ca8-40d2-9c30-a3cde7eec616
-    parentSlot: canvas
     properties:
       top: '8'
       left: '128'
@@ -328,206 +694,40 @@ nodes:
           ref: 58051bb0-2d96-46b8-a33a-5f92a197fdc0
       backgroundColor: accent.purple.400
       padding: 8px
-  5abcea7f-8b70-492e-ba62-3d3978870451:
-    id: 5abcea7f-8b70-492e-ba62-3d3978870451
-    type: BUTTON
-    name: four
-    parentNodeID: 0f3d50f9-bc38-4849-95cb-88a71d700fc9
-    parentSlot: canvas
+  99af1ce0-1477-40f6-87ac-90b33432ee5c:
+    type: FUNCTION
+    name: type3
     properties:
-      top: '16'
-      left: '32'
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '3';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  a3a8ca58-06e2-4a21-8b90-6458e39081fe:
+    type: BUTTON
+    name: eight
+    properties:
+      top: '8'
+      left: '80'
       heightMode: FIXED
       height: 64px
       widthMode: FIXED
       width: 64px
-      text: '4'
+      text: '8'
       onClick:
         function:
-          ref: 5430b404-f44a-4a1f-aa3a-49b369edcc79
-      backgroundColor: accent.purple.400
-      padding: 8px
-  4f6d1b9a-3661-41f0-b91d-d011e3fc2753:
-    id: 4f6d1b9a-3661-41f0-b91d-d011e3fc2753
-    type: BUTTON
-    name: five
-    parentNodeID: 0f3d50f9-bc38-4849-95cb-88a71d700fc9
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '176'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '5'
-      onClick:
-        function:
-          ref: 226769f0-5241-4754-9de9-099c0cde3ecd
-      backgroundColor: accent.purple.400
-      padding: 8px
-  2bad68b6-d2ac-4681-83aa-264b75728e8e:
-    id: 2bad68b6-d2ac-4681-83aa-264b75728e8e
-    type: BUTTON
-    name: six
-    parentNodeID: 0f3d50f9-bc38-4849-95cb-88a71d700fc9
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '336'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '6'
-      onClick:
-        function:
-          ref: 74258f4c-b7bd-4575-b726-4ac39f76cb07
-      backgroundColor: accent.purple.400
-      padding: 8px
-  127e07a8-d794-4fd1-a848-a33203c3eb66:
-    id: 127e07a8-d794-4fd1-a848-a33203c3eb66
-    type: BUTTON
-    name: one
-    parentNodeID: 87dd0e5e-cd51-4180-839a-1c231d3002e6
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '32'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '1'
-      onClick:
-        function:
-          ref: 7107ca8e-5555-44b7-adc2-478c6fd7e15d
-      backgroundColor: accent.purple.400
-      padding: 8px
-  eee607ed-ccc6-4f98-9fa2-c4442fb11eab:
-    id: eee607ed-ccc6-4f98-9fa2-c4442fb11eab
-    type: BUTTON
-    name: two
-    parentNodeID: 87dd0e5e-cd51-4180-839a-1c231d3002e6
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '192'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '2'
-      onClick:
-        function:
-          ref: 89fb386a-d6bd-4a2e-b93f-e44c382ce8e1
-      backgroundColor: accent.purple.400
-      padding: 8px
-  4b673347-e5f0-42b9-9e35-ed5f0a305fde:
-    id: 4b673347-e5f0-42b9-9e35-ed5f0a305fde
-    type: BUTTON
-    name: three
-    parentNodeID: 87dd0e5e-cd51-4180-839a-1c231d3002e6
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '320'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: '3'
-      onClick:
-        function:
-          ref: 99af1ce0-1477-40f6-87ac-90b33432ee5c
-      backgroundColor: accent.purple.400
-      padding: 8px
-  850e6f07-738f-4f8d-b88e-45f3a8bb79fb:
-    id: 850e6f07-738f-4f8d-b88e-45f3a8bb79fb
-    type: CONTAINER
-    name: row4
-    parentNodeID: 812931ba-c14f-465e-9860-13aa948ff82e
-    parentSlot: canvas
-    slots:
-      canvas:
-        - nodeID: f39e845a-518c-420a-a459-7bebb24019dd
-          orderKey: Zz
-        - nodeID: 348f891d-cd13-43cb-a854-265481ff9443
-          orderKey: a0
-    properties:
-      top: '336'
-      left: '48'
-      heightMode: FIXED
-      height: 72px
-      widthMode: FILL
-      width: fill
-      boxShadow: '0'
-      layoutStyle: HORIZONTAL_STACK
-      distributeContent: ''
-      padding: 4px
-      spacing: 8px
-      backgroundColor: transparent
-  f39e845a-518c-420a-a459-7bebb24019dd:
-    id: f39e845a-518c-420a-a459-7bebb24019dd
-    type: BUTTON
-    name: zero
-    parentNodeID: 850e6f07-738f-4f8d-b88e-45f3a8bb79fb
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '48'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: '{{3*64 + 16}}px'
-      text: '0'
-      onClick:
-        function:
-          ref: 42e3a26c-dd32-4636-91c1-e456f5c6d881
-      backgroundColor: accent.purple.400
-      padding: 8px
-  12fe8e7d-5882-42e5-bb0c-5d4120b82145:
-    id: 12fe8e7d-5882-42e5-bb0c-5d4120b82145
-    type: BUTTON
-    name: modbutton
-    parentNodeID: 0f3d50f9-bc38-4849-95cb-88a71d700fc9
-    parentSlot: canvas
-    properties:
-      heightMode: FIXED
-      height: fill
-      widthMode: FILL
-      width: 96px
-      text: modulo
-      onClick:
-        function:
-          ref: eda1b99b-13d0-4354-bf1a-6099ca5b1b37
-      backgroundColor: accent.purple.400
-      padding: 8px
-  e5872a95-bc06-4f48-bc5e-47f7106911c6:
-    id: e5872a95-bc06-4f48-bc5e-47f7106911c6
-    type: BUTTON
-    name: plus
-    parentNodeID: d1017f94-3ca8-40d2-9c30-a3cde7eec616
-    parentSlot: canvas
-    properties:
-      top: '16'
-      left: '256'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: +
-      onClick:
-        function:
-          ref: fd36ae4c-f161-4074-92b1-881fed6e42d4
+          ref: eba87622-4a71-4bc5-a76d-d2781df51c30
       backgroundColor: accent.purple.400
       padding: 8px
   a81d8c41-a5c0-4e07-bc47-456f4a3689c9:
-    id: a81d8c41-a5c0-4e07-bc47-456f4a3689c9
     type: BUTTON
     name: minus
-    parentNodeID: 0f3d50f9-bc38-4849-95cb-88a71d700fc9
-    parentSlot: canvas
     properties:
       top: '40'
       left: '272'
@@ -541,332 +741,9 @@ nodes:
           ref: c1546291-b3f5-4cbd-8437-0192cea31b36
       backgroundColor: accent.purple.400
       padding: 8px
-  348f891d-cd13-43cb-a854-265481ff9443:
-    id: 348f891d-cd13-43cb-a854-265481ff9443
-    type: BUTTON
-    name: times
-    parentNodeID: 850e6f07-738f-4f8d-b88e-45f3a8bb79fb
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '288'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      text: x
-      onClick:
-        function:
-          ref: 91e30ace-1cb1-4350-9247-f07050296bf5
-      backgroundColor: accent.purple.400
-      padding: 8px
-  4ae87ece-de5a-4d34-8c2e-eb6c11772080:
-    id: 4ae87ece-de5a-4d34-8c2e-eb6c11772080
-    type: BUTTON
-    name: dividebutton
-    parentNodeID: 87dd0e5e-cd51-4180-839a-1c231d3002e6
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '288'
-      heightMode: FIXED
-      height: 64px
-      widthMode: FIXED
-      width: 64px
-      styles: |-
-        element.styles {
-            font-size: 18px;
-        }
-      text: ÷
-      onClick:
-        function:
-          ref: 065092ff-8afa-43cb-9b2b-daaac913ac1d
-      backgroundColor: accent.purple.400
-      padding: 8px
-  10233c3c-15f1-4d63-940e-c39b48439dee:
-    id: 10233c3c-15f1-4d63-940e-c39b48439dee
-    type: BUTTON
-    name: clear
-    parentNodeID: d1017f94-3ca8-40d2-9c30-a3cde7eec616
-    parentSlot: canvas
-    properties:
-      top: '40'
-      left: '400'
-      heightMode: FIXED
-      height: fill
-      widthMode: FILL
-      width: 96px
-      text: Clear
-      onClick:
-        function:
-          ref: b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc
-      backgroundColor: accent.purple.400
-      padding: 8px
-  5ffa49b8-fbe7-482a-a06e-8359a373f9de:
-    id: 5ffa49b8-fbe7-482a-a06e-8359a373f9de
-    type: BUTTON
-    name: equalsbutton
-    parentNodeID: 87dd0e5e-cd51-4180-839a-1c231d3002e6
-    parentSlot: canvas
-    properties:
-      heightMode: FIXED
-      height: fill
-      widthMode: FILL
-      width: 96px
-      text: '='
-      onClick:
-        function:
-          ref: af0b49b3-ba0e-4c78-aa7c-2ff034742ac3
-      backgroundColor: accent.purple.400
-      padding: 8px
-  fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c:
-    id: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-    type: RESOURCE/TYPESCRIPT_CLIENT
-    name: typescript_client1
-    parentNodeID: ROOT_NODE
-    parentSlot: resources
-    properties: {}
-  42e3a26c-dd32-4636-91c1-e456f5c6d881:
-    id: 42e3a26c-dd32-4636-91c1-e456f5c6d881
-    type: FUNCTION
-    name: type0
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '0';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  38076ba6-1008-4ff4-b793-7fc09594f570:
-    id: 38076ba6-1008-4ff4-b793-7fc09594f570
-    type: TEXT
-    name: Screen
-    parentNodeID: f77bea61-4afb-4917-9466-439fe1122f6a
-    parentSlot: canvas
-    properties:
-      top: '0'
-      left: '80'
-      heightMode: FILL
-      height: 80px
-      widthMode: FILL
-      width: 352px
-      styles: |-
-        element.styles {
-            font-size: 64px;
-            background: transparent;
-            color: #000;
-            font-weight: 700;
-            font-family: monospace;
-            border-radius: 8px;
-            text-align: right;
-            padding: 4px 8px;
-            height: 100%;
-        }
-      value: ' '
-      fontSize: 64px
-      textAlign: right
-      verticalAlign: center
-      fontWeight: '700'
-      overflowX: hidden
-      overflowY: hidden
-      overflow: auto
-  7107ca8e-5555-44b7-adc2-478c6fd7e15d:
-    id: 7107ca8e-5555-44b7-adc2-478c6fd7e15d
-    type: FUNCTION
-    name: type1
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '1';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  89fb386a-d6bd-4a2e-b93f-e44c382ce8e1:
-    id: 89fb386a-d6bd-4a2e-b93f-e44c382ce8e1
-    type: FUNCTION
-    name: type2
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '2';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  99af1ce0-1477-40f6-87ac-90b33432ee5c:
-    id: 99af1ce0-1477-40f6-87ac-90b33432ee5c
-    type: FUNCTION
-    name: type3
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '3';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  5430b404-f44a-4a1f-aa3a-49b369edcc79:
-    id: 5430b404-f44a-4a1f-aa3a-49b369edcc79
-    type: FUNCTION
-    name: type4
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '4';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  226769f0-5241-4754-9de9-099c0cde3ecd:
-    id: 226769f0-5241-4754-9de9-099c0cde3ecd
-    type: FUNCTION
-    name: type5
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '5';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  74258f4c-b7bd-4575-b726-4ac39f76cb07:
-    id: 74258f4c-b7bd-4575-b726-4ac39f76cb07
-    type: FUNCTION
-    name: type6
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '6';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  42aed45d-7fbe-47ea-8178-7f8a3629f5de:
-    id: 42aed45d-7fbe-47ea-8178-7f8a3629f5de
-    type: FUNCTION
-    name: type7
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '7';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  eba87622-4a71-4bc5-a76d-d2781df51c30:
-    id: eba87622-4a71-4bc5-a76d-d2781df51c30
-    type: FUNCTION
-    name: type8
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '8';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  58051bb0-2d96-46b8-a33a-5f92a197fdc0:
-    id: 58051bb0-2d96-46b8-a33a-5f92a197fdc0
-    type: FUNCTION
-    name: type9
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          Screen.value = (Screen.value ?? '') + '9';
-
-          return Screen.value
-      onSuccess: ''
-      onFailure: ''
-  fd36ae4c-f161-4074-92b1-881fed6e42d4:
-    id: fd36ae4c-f161-4074-92b1-881fed6e42d4
-    type: FUNCTION
-    name: add
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = '+';
-          Screen.value = ' ';
-
-          return screenVal
-      onSuccess: ''
-      onFailure: ''
   af0b49b3-ba0e-4c78-aa7c-2ff034742ac3:
-    id: af0b49b3-ba0e-4c78-aa7c-2ff034742ac3
     type: FUNCTION
     name: equals
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
     properties:
       value: ''
       action:
@@ -906,12 +783,204 @@ nodes:
           return result
       onSuccess: ''
       onFailure: ''
+  b41fc109-374f-42cb-bd2e-30bae23e4a33:
+    type: TEXT
+    name: text2
+    properties:
+      top: '32'
+      left: '64'
+      heightMode: FILL
+      height: fill
+      widthMode: FILL
+      width: fill
+      value: >-
+        # Simple Calculator
+
+        Supports addition, subtraction, multiplication, division, and modulo. 
+
+        ---
+
+        To use, simply press the buttons to type in a number, an operation, then
+        another number, then press the equals button. Clear removes all state.
+
+
+        *Does not currently support chained operations like 10 + 10 + 10 =
+      renderMode: markdown
+      overflow: auto
+  b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc:
+    type: FUNCTION
+    name: Clear
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = ' '
+          register1.value = 0
+          register2.value = ' '
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5:
+    type: THEME
+    name: theme1
+    properties:
+      theme: |-
+        return {
+            colors: {
+                kevin: {
+                    test: "#f00f00"
+                }
+            }
+        }
+  badb03a6-10df-4c4e-a282-ba94efc8119c:
+    type: BUTTON
+    name: button1
+    properties:
+      padding: 8px
+      backgroundColor: accent.purple.400
+      onClick: ''
+  c1546291-b3f5-4cbd-8437-0192cea31b36:
+    type: FUNCTION
+    name: subtract
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
+          register1.value = screenVal;
+          register2.value = '-';
+          Screen.value = ' ';
+          return screenVal
+      onSuccess: ''
+      onFailure: ''
+  d1017f94-3ca8-40d2-9c30-a3cde7eec616:
+    type: CONTAINER
+    name: row1
+    slots:
+      canvas:
+        - nodeID: 025b6bb8-2ba4-4cac-a4c0-735c4781e8d2
+          orderKey: Zw
+        - nodeID: a3a8ca58-06e2-4a21-8b90-6458e39081fe
+          orderKey: Zx
+        - nodeID: 98b0e93b-f3e6-417f-bb7d-5b17a2593143
+          orderKey: Zy
+        - nodeID: e5872a95-bc06-4f48-bc5e-47f7106911c6
+          orderKey: Zz
+        - nodeID: 10233c3c-15f1-4d63-940e-c39b48439dee
+          orderKey: a0
+    properties:
+      top: '80'
+      left: '128'
+      heightMode: FIXED
+      height: 72px
+      widthMode: FILL
+      width: fill
+      boxShadow: '0'
+      layoutStyle: HORIZONTAL_STACK
+      padding: 4px
+      spacing: 8px
+      backgroundColor: transparent
+  e5872a95-bc06-4f48-bc5e-47f7106911c6:
+    type: BUTTON
+    name: plus
+    properties:
+      top: '16'
+      left: '256'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: +
+      onClick:
+        function:
+          ref: fd36ae4c-f161-4074-92b1-881fed6e42d4
+      backgroundColor: accent.purple.400
+      padding: 8px
+  e7e27edc-ebac-4357-8eeb-8618a0c14c2a:
+    type: LOCAL_VARIABLE
+    name: register1
+    properties:
+      value: '{{ 0 }}'
+  eb7439a4-1169-4b6e-827e-09830ac16741:
+    type: LOCAL_VARIABLE
+    name: register2
+    properties:
+      value: ' '
+  eba87622-4a71-4bc5-a76d-d2781df51c30:
+    type: FUNCTION
+    name: type8
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          Screen.value = (Screen.value ?? '') + '8';
+
+          return Screen.value
+      onSuccess: ''
+      onFailure: ''
+  eda1b99b-13d0-4354-bf1a-6099ca5b1b37:
+    type: FUNCTION
+    name: modulo
+    properties:
+      value: ''
+      action:
+        targetNode:
+          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
+        actionType: CALL_CLIENT_FUNCTION
+        code: |-
+          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
+
+          register1.value = screenVal;
+          register2.value = '%';
+          Screen.value = ' ';
+
+          return screenVal
+      onSuccess: ''
+      onFailure: ''
+  eee607ed-ccc6-4f98-9fa2-c4442fb11eab:
+    type: BUTTON
+    name: two
+    properties:
+      top: '32'
+      left: '192'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: 64px
+      text: '2'
+      onClick:
+        function:
+          ref: 89fb386a-d6bd-4a2e-b93f-e44c382ce8e1
+      backgroundColor: accent.purple.400
+      padding: 8px
+  f39e845a-518c-420a-a459-7bebb24019dd:
+    type: BUTTON
+    name: zero
+    properties:
+      top: '32'
+      left: '48'
+      heightMode: FIXED
+      height: 64px
+      widthMode: FIXED
+      width: '{{3*64 + 16}}px'
+      text: '0'
+      onClick:
+        function:
+          ref: 42e3a26c-dd32-4636-91c1-e456f5c6d881
+      backgroundColor: accent.purple.400
+      padding: 8px
   f77bea61-4afb-4917-9466-439fe1122f6a:
-    id: f77bea61-4afb-4917-9466-439fe1122f6a
     type: CONTAINER
     name: screenContainer
-    parentNodeID: 374e8df4-2a48-46fd-acaf-d81a29aadcd1
-    parentSlot: canvas
     slots:
       canvas:
         - nodeID: 20a77996-e255-4996-861e-ef4922070bd3
@@ -937,60 +1006,12 @@ nodes:
       padding: '4'
       spacing: '0'
       backgroundColor: surface.400
-  20a77996-e255-4996-861e-ef4922070bd3:
-    id: 20a77996-e255-4996-861e-ef4922070bd3
-    type: TEXT
-    name: text1
-    parentNodeID: f77bea61-4afb-4917-9466-439fe1122f6a
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '16'
-      heightMode: FILL
-      height: fill
-      widthMode: FIXED
-      width: 50px
-      styles: |-
-        element.styles {
-            font-size: 64px;
-            background: transparent;
-            color: #000;
-            font-weight: 700;
-            font-family: monospace;
-            border-radius: 8px;
-            text-align: right;
-            padding: 4px 8px;
-            height: 100%;
-            vertical-align: middle;
-        }
-      value: '{{register2.value}}'
-      overflow: auto
-  c1546291-b3f5-4cbd-8437-0192cea31b36:
-    id: c1546291-b3f5-4cbd-8437-0192cea31b36
+  fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c:
+    type: RESOURCE/TYPESCRIPT_CLIENT
+    name: typescript_client1
+  fd36ae4c-f161-4074-92b1-881fed6e42d4:
     type: FUNCTION
-    name: subtract
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-          register1.value = screenVal;
-          register2.value = '-';
-          Screen.value = ' ';
-          return screenVal
-      onSuccess: ''
-      onFailure: ''
-  91e30ace-1cb1-4350-9247-f07050296bf5:
-    id: 91e30ace-1cb1-4350-9247-f07050296bf5
-    type: FUNCTION
-    name: multiply
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
+    name: add
     properties:
       value: ''
       action:
@@ -1001,133 +1022,9 @@ nodes:
           const screenVal = +((Screen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
-          register2.value = 'x';
+          register2.value = '+';
           Screen.value = ' ';
 
           return screenVal
       onSuccess: ''
       onFailure: ''
-  065092ff-8afa-43cb-9b2b-daaac913ac1d:
-    id: 065092ff-8afa-43cb-9b2b-daaac913ac1d
-    type: FUNCTION
-    name: divide
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = '÷';
-          Screen.value = ' ';
-
-          return screenVal
-      onSuccess: ''
-      onFailure: ''
-  eda1b99b-13d0-4354-bf1a-6099ca5b1b37:
-    id: eda1b99b-13d0-4354-bf1a-6099ca5b1b37
-    type: FUNCTION
-    name: modulo
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: functions
-    properties:
-      value: ''
-      action:
-        targetNode:
-          ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
-        actionType: CALL_CLIENT_FUNCTION
-        code: |-
-          const screenVal = +((Screen.value ?? '0').trim()) ?? 0
-
-          register1.value = screenVal;
-          register2.value = '%';
-          Screen.value = ' ';
-
-          return screenVal
-      onSuccess: ''
-      onFailure: ''
-  75e90fc6-a3ef-401c-bea0-f89738deffdb:
-    id: 75e90fc6-a3ef-401c-bea0-f89738deffdb
-    type: CONTAINER
-    name: Readme
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: canvas
-    slots:
-      canvas:
-        - nodeID: b41fc109-374f-42cb-bd2e-30bae23e4a33
-          orderKey: a0
-    properties:
-      top: '3'
-      left: '2'
-      heightMode: AUTO
-      height: '14'
-      widthMode: FILL
-      width: '10'
-      layoutStyle: HORIZONTAL_STACK
-      alignContent: center
-  b41fc109-374f-42cb-bd2e-30bae23e4a33:
-    id: b41fc109-374f-42cb-bd2e-30bae23e4a33
-    type: TEXT
-    name: text2
-    parentNodeID: 75e90fc6-a3ef-401c-bea0-f89738deffdb
-    parentSlot: canvas
-    properties:
-      top: '32'
-      left: '64'
-      heightMode: FILL
-      height: fill
-      widthMode: FILL
-      width: fill
-      value: >-
-        # Simple Calculator
-
-        Supports addition, subtraction, multiplication, division, and modulo. 
-
-        ---
-
-        To use, simply press the buttons to type in a number, an operation, then
-        another number, then press the equals button. Clear removes all state.
-
-
-        *Does not currently support chained operations like 10 + 10 + 10 =
-      renderMode: markdown
-      overflow: auto
-  e7e27edc-ebac-4357-8eeb-8618a0c14c2a:
-    id: e7e27edc-ebac-4357-8eeb-8618a0c14c2a
-    type: LOCAL_VARIABLE
-    name: register1
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: variables
-    properties:
-      value: '{{ 0 }}'
-  eb7439a4-1169-4b6e-827e-09830ac16741:
-    id: eb7439a4-1169-4b6e-827e-09830ac16741
-    type: LOCAL_VARIABLE
-    name: register2
-    parentNodeID: 5513f466-9af1-4f8b-97b1-df1e12fe955c
-    parentSlot: variables
-    properties:
-      value: ' '
-  659b63a7-e912-4dc6-a2b1-19070c202be7:
-    id: 659b63a7-e912-4dc6-a2b1-19070c202be7
-    type: TEXT
-    name: text1
-    parentNodeID: 5d4a75ce-9fea-4ef6-a9a3-640e5469c493
-    parentSlot: canvas
-    properties:
-      overflow: auto
-  badb03a6-10df-4c4e-a282-ba94efc8119c:
-    id: badb03a6-10df-4c4e-a282-ba94efc8119c
-    type: BUTTON
-    name: button1
-    parentNodeID: 5d4a75ce-9fea-4ef6-a9a3-640e5469c493
-    parentSlot: canvas
-    properties:
-      padding: 8px
-      backgroundColor: accent.purple.400
-      onClick: ''
