@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.0
+runtimeVersion: 0.3.2
 name: Simple Calculator
 description: A simple calcuator program
 type: com.dynaboard/project
@@ -16,9 +16,6 @@ nodes:
       resources:
         - nodeID: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
           orderKey: a3
-      components:
-        - nodeID: 5d4a75ce-9fea-4ef6-a9a3-640e5469c493
-          orderKey: a0
     properties:
       selectedTheme: b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5
   01ef9382-9814-4cea-99eb-b67a1d420723:
@@ -66,11 +63,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((screen.value ?? '0').trim()) ?? 0
+          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = '÷';
-          screen.value = ' ';
+          calcScreen.value = ' ';
 
           return screenVal
       onSuccess: ''
@@ -171,7 +168,6 @@ nodes:
             padding: 4px 8px;
         }
       value: '{{register2.value}}'
-      verticalAlign: center
       overflow: auto
   226769f0-5241-4754-9de9-099c0cde3ecd:
     type: FUNCTION
@@ -183,9 +179,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '5';
+          calcScreen.value = (calcScreen.value ?? '') + '5';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   2bad68b6-d2ac-4681-83aa-264b75728e8e:
@@ -247,7 +243,7 @@ nodes:
       backgroundColor: surface.200
   38076ba6-1008-4ff4-b793-7fc09594f570:
     type: TEXT
-    name: screen
+    name: calcScreen
     properties:
       top: '0'
       left: '80'
@@ -270,7 +266,6 @@ nodes:
       value: ' '
       fontSize: sm
       textAlign: right
-      verticalAlign: center
       fontWeight: '700'
       overflowX: hidden
       overflowY: hidden
@@ -286,9 +281,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '7';
+          calcScreen.value = (calcScreen.value ?? '') + '7';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   42e3a26c-dd32-4636-91c1-e456f5c6d881:
@@ -301,9 +296,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '0';
+          calcScreen.value = (calcScreen.value ?? '') + '0';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   4ae87ece-de5a-4d34-8c2e-eb6c11772080:
@@ -368,9 +363,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '4';
+          calcScreen.value = (calcScreen.value ?? '') + '4';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   5513f466-9af1-4f8b-97b1-df1e12fe955c:
@@ -439,9 +434,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '9';
+          calcScreen.value = (calcScreen.value ?? '') + '9';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   5abcea7f-8b70-492e-ba62-3d3978870451:
@@ -460,24 +455,6 @@ nodes:
           ref: 5430b404-f44a-4a1f-aa3a-49b369edcc79
       backgroundColor: accent.purple.400
       padding: 8px
-  5d4a75ce-9fea-4ef6-a9a3-640e5469c493:
-    type: COMPONENT
-    name: template1
-    slots:
-      canvas:
-        - nodeID: 659b63a7-e912-4dc6-a2b1-19070c202be7
-          orderKey: Zz
-        - nodeID: badb03a6-10df-4c4e-a282-ba94efc8119c
-          orderKey: a0
-    properties:
-      minHeight: 32px
-      height: 132px
-      maxHeight: 960px
-      minWidth: 32px
-      width: 228px
-      maxWidth: 960px
-      layoutStyle: VERTICAL_STACK
-      spacing: 8px
   5ffa49b8-fbe7-482a-a06e-8359a373f9de:
     type: BUTTON
     name: equalsbutton
@@ -492,11 +469,6 @@ nodes:
           ref: af0b49b3-ba0e-4c78-aa7c-2ff034742ac3
       backgroundColor: accent.purple.400
       padding: 8px
-  659b63a7-e912-4dc6-a2b1-19070c202be7:
-    type: TEXT
-    name: text1
-    properties:
-      overflow: auto
   7107ca8e-5555-44b7-adc2-478c6fd7e15d:
     type: FUNCTION
     name: type1
@@ -507,9 +479,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '1';
+          calcScreen.value = (calcScreen.value ?? '') + '1';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   74258f4c-b7bd-4575-b726-4ac39f76cb07:
@@ -522,9 +494,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '6';
+          calcScreen.value = (calcScreen.value ?? '') + '6';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   75e90fc6-a3ef-401c-bea0-f89738deffdb:
@@ -629,9 +601,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '2';
+          calcScreen.value = (calcScreen.value ?? '') + '2';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   91e30ace-1cb1-4350-9247-f07050296bf5:
@@ -644,11 +616,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((screen.value ?? '0').trim()) ?? 0
+          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = 'x';
-          screen.value = ' ';
+          calcScreen.value = ' ';
 
           return screenVal
       onSuccess: ''
@@ -683,9 +655,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '3';
+          calcScreen.value = (calcScreen.value ?? '') + '3';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   a3a8ca58-06e2-4a21-8b90-6458e39081fe:
@@ -732,7 +704,7 @@ nodes:
         code: |-
           function handleEquals() {
               const registerVal = +(register1.value ?? '0')
-              const screenVal = +((screen.value ?? '0').trim()) ?? 0
+              const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
               const lastOperand = (register2.value).trim()
               
               if (!lastOperand || !lastOperand.length) {
@@ -757,7 +729,7 @@ nodes:
           const result = handleEquals()
           register1.value = 0;
           register2.value = ' ';
-          screen.value = result ?? 0;
+          calcScreen.value = result ?? 0;
 
           return result
       onSuccess: ''
@@ -796,10 +768,10 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = ' '
+          calcScreen.value = ' '
           register1.value = 0
           register2.value = ' '
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   b883a7ba-0ce2-4bf0-9ac6-1895e8e819e5:
@@ -814,13 +786,6 @@ nodes:
                 }
             }
         }
-  badb03a6-10df-4c4e-a282-ba94efc8119c:
-    type: BUTTON
-    name: button1
-    properties:
-      padding: 8px
-      backgroundColor: accent.purple.400
-      onClick: ''
   c1546291-b3f5-4cbd-8437-0192cea31b36:
     type: FUNCTION
     name: subtract
@@ -831,10 +796,10 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((screen.value ?? '0').trim()) ?? 0
+          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
           register1.value = screenVal;
           register2.value = '-';
-          screen.value = ' ';
+          calcScreen.value = ' ';
           return screenVal
       onSuccess: ''
       onFailure: ''
@@ -901,9 +866,9 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          screen.value = (screen.value ?? '') + '8';
+          calcScreen.value = (calcScreen.value ?? '') + '8';
 
-          return screen.value
+          return calcScreen.value
       onSuccess: ''
       onFailure: ''
   eda1b99b-13d0-4354-bf1a-6099ca5b1b37:
@@ -916,11 +881,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((screen.value ?? '0').trim()) ?? 0
+          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = '%';
-          screen.value = ' ';
+          calcScreen.value = ' ';
 
           return screenVal
       onSuccess: ''
@@ -998,11 +963,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((screen.value ?? '0').trim()) ?? 0
+          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = '+';
-          screen.value = ' ';
+          calcScreen.value = ' ';
 
           return screenVal
       onSuccess: ''
