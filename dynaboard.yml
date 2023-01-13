@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.2
+runtimeVersion: 0.3.4
 name: Simple Calculator
 description: A simple calcuator program
 type: com.dynaboard/project
@@ -26,7 +26,7 @@ nodes:
         - nodeID: 374e8df4-2a48-46fd-acaf-d81a29aadcd1
           orderKey: a0
     properties:
-      top: '18'
+      top: '12'
       heightMode: FIXED
       height: '34'
       widthMode: FILL
@@ -160,7 +160,6 @@ nodes:
         element.styles {
             font-size: 64px;
             background: transparent;
-            color: #000;
             font-weight: 700;
             font-family: monospace;
             border-radius: 8px;
@@ -256,7 +255,6 @@ nodes:
             font-size: 64px;
             line-height: 64px;
             background: transparent;
-            color: #000;
             font-weight: 700;
             font-family: monospace;
             border-radius: 8px;
@@ -507,14 +505,13 @@ nodes:
         - nodeID: b41fc109-374f-42cb-bd2e-30bae23e4a33
           orderKey: a0
     properties:
-      top: '3'
-      left: '2'
       heightMode: AUTO
-      height: '14'
+      height: '11'
       widthMode: FILL
-      width: '10'
+      width: '12'
       layoutStyle: HORIZONTAL_STACK
       alignContent: center
+      borderRadius: 4px
   812931ba-c14f-465e-9860-13aa948ff82e:
     type: CONTAINER
     name: buttonsContainer
@@ -741,21 +738,26 @@ nodes:
       top: '32'
       left: '64'
       heightMode: FILL
-      height: fill
+      height: 144px
       widthMode: FILL
-      width: fill
+      width: 784px
       value: >-
         # Simple Calculator
 
-        Supports addition, subtraction, multiplication, division, and modulo. 
 
-        ---
+        **Supports addition, subtraction, multiplication, division, and
+        modulo.**
+
 
         To use, simply press the buttons to type in a number, an operation, then
         another number, then press the equals button. Clear removes all state.
-
-
-        *Does not currently support chained operations like 10 + 10 + 10 =
+      lineHeight: '1.5'
+      styles: |-
+        element.styles {
+          h1, h2, h3, p {
+            margin-bottom: 10px;
+          }
+        }
       renderMode: markdown
       overflow: auto
   b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc:
