@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.4
+runtimeVersion: 0.3.5
 name: Simple Calculator
 description: A simple calcuator program
 type: com.dynaboard/project
@@ -63,7 +63,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = '÷';
@@ -613,7 +613,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = 'x';
@@ -701,7 +701,7 @@ nodes:
         code: |-
           function handleEquals() {
               const registerVal = +(register1.value ?? '0')
-              const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
+              const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
               const lastOperand = (register2.value).trim()
               
               if (!lastOperand || !lastOperand.length) {
@@ -798,7 +798,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
           register1.value = screenVal;
           register2.value = '-';
           calcScreen.value = ' ';
@@ -883,7 +883,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = '%';
@@ -965,7 +965,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +((calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
 
           register1.value = screenVal;
           register2.value = '+';
