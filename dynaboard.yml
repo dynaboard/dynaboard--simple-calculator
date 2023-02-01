@@ -63,11 +63,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +String(calcScreen.value ?? "0").trim() ?? 0
 
-          register1.value = screenVal;
-          register2.value = '÷';
-          calcScreen.value = ' ';
+          register1.value = screenVal
+          register2.value = "÷"
+          calcScreen.value = " "
 
           return screenVal
       onSuccess: ''
@@ -102,7 +102,7 @@ nodes:
       backgroundColor: transparent
   10233c3c-15f1-4d63-940e-c39b48439dee:
     type: BUTTON
-    name: clear
+    name: clearButton
     properties:
       top: '40'
       left: '400'
@@ -178,7 +178,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '5';
+          calcScreen.value = (calcScreen.value ?? "") + "5"
 
           return calcScreen.value
       onSuccess: ''
@@ -279,7 +279,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '7';
+          calcScreen.value = (calcScreen.value ?? "") + "7"
 
           return calcScreen.value
       onSuccess: ''
@@ -294,7 +294,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '0';
+          calcScreen.value = (calcScreen.value ?? "") + "0"
 
           return calcScreen.value
       onSuccess: ''
@@ -361,7 +361,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '4';
+          calcScreen.value = (calcScreen.value ?? "") + "4"
 
           return calcScreen.value
       onSuccess: ''
@@ -404,7 +404,7 @@ nodes:
         - nodeID: 42e3a26c-dd32-4636-91c1-e456f5c6d881
           orderKey: aG
         - nodeID: b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc
-          orderKey: aH
+          orderKey: a6V
       variables:
         - nodeID: eb7439a4-1169-4b6e-827e-09830ac16741
           orderKey: aI
@@ -432,7 +432,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '9';
+          calcScreen.value = (calcScreen.value ?? "") + "9"
 
           return calcScreen.value
       onSuccess: ''
@@ -477,7 +477,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '1';
+          calcScreen.value = (calcScreen.value ?? "") + "1"
 
           return calcScreen.value
       onSuccess: ''
@@ -492,7 +492,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '6';
+          calcScreen.value = (calcScreen.value ?? "") + "6"
 
           return calcScreen.value
       onSuccess: ''
@@ -598,7 +598,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '2';
+          calcScreen.value = (calcScreen.value ?? "") + "2"
 
           return calcScreen.value
       onSuccess: ''
@@ -613,11 +613,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +String(calcScreen.value ?? "0").trim() ?? 0
 
-          register1.value = screenVal;
-          register2.value = 'x';
-          calcScreen.value = ' ';
+          register1.value = screenVal
+          register2.value = "x"
+          calcScreen.value = " "
 
           return screenVal
       onSuccess: ''
@@ -652,7 +652,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '3';
+          calcScreen.value = (calcScreen.value ?? "") + "3"
 
           return calcScreen.value
       onSuccess: ''
@@ -700,33 +700,33 @@ nodes:
         actionType: CALL_CLIENT_FUNCTION
         code: |-
           function handleEquals() {
-              const registerVal = +(register1.value ?? '0')
-              const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
-              const lastOperand = (register2.value).trim()
-              
-              if (!lastOperand || !lastOperand.length) {
-                  return registerVal;
-              } else if (lastOperand === '+') {
-                  return registerVal + screenVal;
-              } else if (lastOperand === '-') {
-                  return registerVal - screenVal;
-              } else if (lastOperand === 'x') {
-                  return registerVal * screenVal;
-              } else if (lastOperand === '÷') {
-                  if (registerVal !== 0) {
-                      return registerVal/screenVal;
-                  } else {
-                  return 0;
-                  }
-              } else if (lastOperand === '%') {
-                  return registerVal % screenVal;
+            const registerVal = +(register1.value ?? "0")
+            const screenVal = +String(calcScreen.value ?? "0").trim() ?? 0
+            const lastOperand = register2.value.trim()
+
+            if (!lastOperand || !lastOperand.length) {
+              return registerVal
+            } else if (lastOperand === "+") {
+              return registerVal + screenVal
+            } else if (lastOperand === "-") {
+              return registerVal - screenVal
+            } else if (lastOperand === "x") {
+              return registerVal * screenVal
+            } else if (lastOperand === "÷") {
+              if (registerVal !== 0) {
+                return registerVal / screenVal
+              } else {
+                return 0
               }
+            } else if (lastOperand === "%") {
+              return registerVal % screenVal
+            }
           }
 
           const result = handleEquals()
-          register1.value = 0;
-          register2.value = ' ';
-          calcScreen.value = result ?? 0;
+          register1.value = 0
+          register2.value = " "
+          calcScreen.value = String(result ?? 0)
 
           return result
       onSuccess: ''
@@ -762,7 +762,7 @@ nodes:
       overflow: auto
   b75dcae7-335e-4c3d-8301-b9d5cf5ef9cc:
     type: FUNCTION
-    name: Clear
+    name: clear
     properties:
       value: ''
       action:
@@ -770,9 +770,10 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = ' '
+          calcScreen.value = " "
           register1.value = 0
-          register2.value = ' '
+          register2.value = " "
+
           return calcScreen.value
       onSuccess: ''
       onFailure: ''
@@ -798,10 +799,12 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
-          register1.value = screenVal;
-          register2.value = '-';
-          calcScreen.value = ' ';
+          const screenVal = +String(calcScreen.value ?? "0").trim() ?? 0
+
+          register1.value = screenVal
+          register2.value = "-"
+          calcScreen.value = " "
+
           return screenVal
       onSuccess: ''
       onFailure: ''
@@ -868,7 +871,7 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          calcScreen.value = (calcScreen.value ?? '') + '8';
+          calcScreen.value = (calcScreen.value ?? "") + "8"
 
           return calcScreen.value
       onSuccess: ''
@@ -883,11 +886,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +String(calcScreen.value ?? "0").trim() ?? 0
 
-          register1.value = screenVal;
-          register2.value = '%';
-          calcScreen.value = ' ';
+          register1.value = screenVal
+          register2.value = "%"
+          calcScreen.value = " "
 
           return screenVal
       onSuccess: ''
@@ -965,11 +968,11 @@ nodes:
           ref: fa4847ca-2dfe-4d21-a985-5f0ba17a2d0c
         actionType: CALL_CLIENT_FUNCTION
         code: |-
-          const screenVal = +(String(calcScreen.value ?? '0').trim()) ?? 0
+          const screenVal = +String(calcScreen.value ?? "0").trim() ?? 0
 
-          register1.value = screenVal;
-          register2.value = '+';
-          calcScreen.value = ' ';
+          register1.value = screenVal
+          register2.value = "+"
+          calcScreen.value = " "
 
           return screenVal
       onSuccess: ''
