@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.5
+runtimeVersion: 0.4.0
 name: Simple Calculator
 description: A simple calcuator program
 type: com.dynaboard/project
@@ -422,6 +422,10 @@ nodes:
       spacing: '4'
       columnSize: 79.328125
       rowSize: 16
+      headerProps: {}
+      leftSidebarProps: {}
+      rightSidebarProps: {}
+      footerProps: {}
   58051bb0-2d96-46b8-a33a-5f92a197fdc0:
     type: FUNCTION
     name: type9
@@ -506,12 +510,11 @@ nodes:
           orderKey: a0
     properties:
       heightMode: AUTO
-      height: '11'
+      height: '13'
       widthMode: FILL
       width: '12'
       layoutStyle: HORIZONTAL_STACK
       alignContent: center
-      borderRadius: 4px
   812931ba-c14f-465e-9860-13aa948ff82e:
     type: CONTAINER
     name: buttonsContainer
@@ -738,9 +741,9 @@ nodes:
       top: '32'
       left: '64'
       heightMode: FILL
-      height: 144px
+      height: fill
       widthMode: FILL
-      width: 784px
+      width: fill
       value: >-
         # Simple Calculator
 
